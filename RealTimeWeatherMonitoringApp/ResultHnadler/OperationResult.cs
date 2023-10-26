@@ -1,5 +1,4 @@
-﻿
-namespace RealTimeWeatherMonitoringApp.ResultHandler
+﻿namespace RealTimeWeatherMonitoringApp.ResultHandler
 {
     public class OperationResult
     {

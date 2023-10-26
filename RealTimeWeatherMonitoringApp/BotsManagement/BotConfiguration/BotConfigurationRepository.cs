@@ -5,19 +5,19 @@ namespace RealTimeWeatherMonitoringApp.BotsManagement.BotConfiguration
 {
     public class BotConfigurationRepository
     {    
-        private readonly JsonSerializerOptions _options = new()
+        private static readonly JsonSerializerOptions _options = new()
         {
             PropertyNameCaseInsensitive = true
         };
-        public OperationResult LoadBotsConfiguration(string configurationFilePath)
+        public static OperationResult LoadBotsConfiguration(string configurationFilePath)
         {
-            var botsConfiguration = new Dictionary<BotName, BotConfiguration>(); 
+            var botsConfiguration = new Dictionary<BotName, BotConfigurationModel>(); 
             try
             {
                 var jsonString = File.ReadAllText(configurationFilePath);
                 if (!string.IsNullOrEmpty(jsonString))
                 {
-                    botsConfiguration = JsonSerializer.Deserialize<Dictionary<BotName, BotConfiguration>>(jsonString, _options);
+                    botsConfiguration = JsonSerializer.Deserialize<Dictionary<BotName, BotConfigurationModel>>(jsonString, _options);
                     return OperationResult.SuccessDataMessage("Bots settings loaded successfully", botsConfiguration);
                 }
                 return OperationResult.FailureResult("Configuration file is Empty!");    

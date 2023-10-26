@@ -12,7 +12,7 @@ namespace RealTimeWeatherMonitoringApp.DataFormatManagement
             try
             {
                 JObject jsonInputObject = JObject.Parse(inputData);
-                return OperationResult.SuccessResult("Validated json format");
+                return OperationResult.SuccessResult("Valid json format");
             }
             catch (Exception ex)
             {

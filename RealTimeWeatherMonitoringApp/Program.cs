@@ -1,18 +1,41 @@
-﻿using RealTimeWeatherMonitoringApp.DataFormatManagement;
+﻿using RealTimeWeatherMonitoringApp.BotsManagement;
+using RealTimeWeatherMonitoringApp.BotsManagement.BotConfiguration;
+using RealTimeWeatherMonitoringApp.DataFormatManagement;
 using RealTimeWeatherMonitoringApp.WeatherManagement;
 
 WeatherStation weatherStation = new();
+SetConfiguration();
 StartApplication();
 
-
+void SetConfiguration()
+{
+    string path = "C:\\Users\\DELL\\source\\repos\\RealTimeWeatherMonitoringSystem\\RealTimeWeatherMonitoringApp\\BotsConfiguration.json";
+    var botConfigurationResult = BotConfigurationRepository.LoadBotsConfiguration(path);
+    if (botConfigurationResult.IsSuccess)
+    {
+        var botsConfiguration = (Dictionary<BotName, BotConfigurationModel>)botConfigurationResult.Data;
+        foreach (var Bot in botsConfiguration.Where(config => config.Value.Enabled))
+        {
+            var tempThreshold = Bot.Value.TemperatureThreshold;
+            var humidityThreshold = Bot.Value.HumidityThreshold;
+            var msg = Bot.Value.Message;
+            if(Bot.Key.Equals(BotName.RainBot))  weatherStation.AddSubscriber(new RainBot(humidityThreshold,msg));
+            if(Bot.Key.Equals(BotName.SunBot))  weatherStation.AddSubscriber(new SunBot(tempThreshold, msg));
+            if(Bot.Key.Equals(BotName.SunBot)) weatherStation.AddSubscriber(new SnowBot(tempThreshold, msg));
+        }
+    }
+    else
+    {
+        Console.WriteLine(botConfigurationResult.Message);
+        Environment.Exit(0);
+    }
+};   
 void StartApplication()
 {
     Console.WriteLine("\n********************************");
-    WeatherStation weatherStation = new WeatherStation();
     Console.WriteLine("Enter weather data:");
     string inputData = Console.ReadLine() ?? string.Empty;
     DataFormatHandler(inputData);
-
 }
 void DataFormatHandler(string inputData)
 {
@@ -22,7 +45,7 @@ void DataFormatHandler(string inputData)
         new XMLFormatStrategy(),
     };
     var InputFormatStrategy = dataFormatProcessStrategies
-                    .FirstOrDefault(strategy => strategy.ValidateFormat(inputData).IsSuccess);
+        .FirstOrDefault(strategy => strategy.ValidateFormat(inputData).IsSuccess);
     if(InputFormatStrategy == null)
     {
         Console.WriteLine("Not valid input format");
@@ -37,10 +60,9 @@ void DataFormatHandler(string inputData)
     var newData = (WeatherData)weatherDataExtraction.Data;
     SetWeatherStationState(newData);
 }
-
 void SetWeatherStationState(WeatherData newState)
 {
-    Console.WriteLine(newState.ToString());
+    Console.WriteLine($"Location:{newState.Location}");
     weatherStation.SetWeatherStationState(newState.Temperature, newState.Humidity);
     ReadNewData();
 }
@@ -54,3 +76,4 @@ void ReadNewData()
         Environment.Exit(0);
     StartApplication();
 }
+

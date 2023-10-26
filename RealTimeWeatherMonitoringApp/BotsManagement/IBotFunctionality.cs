@@ -1,5 +1,4 @@
-﻿
-namespace RealTimeWeatherMonitoringApp.BotsManagement
+﻿namespace RealTimeWeatherMonitoringApp.BotsManagement
 {
     internal interface IBotFunctionality
     {

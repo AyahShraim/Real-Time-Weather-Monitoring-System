@@ -13,7 +13,7 @@ namespace RealTimeWeatherMonitoringApp.DataFormatManagement
             {
                 XmlDocument xmlDocument = new();
                 xmlDocument.LoadXml(inputData);
-                return OperationResult.SuccessResult("Validated xml format & structure");
+                return OperationResult.SuccessResult("Valid xml format");
 
             }
             catch (Exception ex)
