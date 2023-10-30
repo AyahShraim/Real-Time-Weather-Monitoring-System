@@ -1,4 +1,5 @@
-﻿using RealTimeWeatherMonitoringApp.BotsManagement;
+﻿using Microsoft.Extensions.Configuration;
+using RealTimeWeatherMonitoringApp.BotsManagement;
 using RealTimeWeatherMonitoringApp.BotsManagement.BotConfiguration;
 using RealTimeWeatherMonitoringApp.DataFormatManagement;
 using RealTimeWeatherMonitoringApp.WeatherManagement;
@@ -9,8 +10,12 @@ StartApplication();
 
 void SetConfiguration()
 {
-    string path = "C:\\Users\\DELL\\source\\repos\\RealTimeWeatherMonitoringSystem\\RealTimeWeatherMonitoringApp\\BotsConfiguration.json";
-    var botConfigurationResult = BotConfigurationRepository.LoadBotsConfiguration(path);
+    var configuration = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appSetting.json")
+    .Build();
+    string FileName = configuration["BotsConfigurationFileName"];
+    var botConfigurationResult = BotConfigurationRepository.LoadBotsConfiguration(FileName);
     if (botConfigurationResult.IsSuccess)
     {
         var botsConfiguration = (Dictionary<BotName, BotConfigurationModel>)botConfigurationResult.Data;
