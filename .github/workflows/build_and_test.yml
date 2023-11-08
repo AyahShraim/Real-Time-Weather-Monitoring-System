@@ -22,6 +22,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+      with:
+        ref: testing
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v3
       with:
@@ -31,7 +33,7 @@ jobs:
       run: dotnet  restore 
       
     - name: Build
-      run: dotnet build RealTimeWeatherMonitoringApp.csproj  --configuration Release --no-restore 
+      run: dotnet build RealTimeWeatherMonitoringApp/RealTimeWeatherMonitoringApp.csproj  --configuration Release --no-restore 
   
     - name: Test
-      run: dotnet test  --no-restore --verbosity normal
+      run: dotnet test RealTimeWeatherMonitoringApp/RealTimeWeatherMonitoringApp.Tests.csproj  --no-restore --verbosity normal
