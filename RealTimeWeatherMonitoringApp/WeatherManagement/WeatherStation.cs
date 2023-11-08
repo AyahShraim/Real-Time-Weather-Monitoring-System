@@ -27,5 +27,9 @@ namespace RealTimeWeatherMonitoringApp.WeatherManagement
         {
             Subscribers.Add(subscriber);
         }
+        public List<IWeatherDataSubscriber> GetSubscribers()
+        {
+            return Subscribers;
+        }
     }
 }

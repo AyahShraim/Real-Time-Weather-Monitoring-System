@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealTimeWeatherMonitoringApp", "RealTimeWeatherMonitoringApp.csproj", "{62D76901-7B65-46E1-BF30-C0BC275C6F39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealTimeWeatherMonitoringApp", "RealTimeWeatherMonitoringApp.csproj", "{62D76901-7B65-46E1-BF30-C0BC275C6F39}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealTimeWeatherMonitoringApp.Tests", "..\RealTimeWeatherMonitoringApp.Tests\RealTimeWeatherMonitoringApp.Tests.csproj", "{A925CC13-C957-4086-863F-366A43BF51E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{62D76901-7B65-46E1-BF30-C0BC275C6F39}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62D76901-7B65-46E1-BF30-C0BC275C6F39}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62D76901-7B65-46E1-BF30-C0BC275C6F39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A925CC13-C957-4086-863F-366A43BF51E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A925CC13-C957-4086-863F-366A43BF51E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A925CC13-C957-4086-863F-366A43BF51E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A925CC13-C957-4086-863F-366A43BF51E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
