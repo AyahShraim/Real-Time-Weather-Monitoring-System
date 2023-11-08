@@ -9,7 +9,7 @@ on:
     - '**.csproj'
 
 env:
-  DOTNET_VERSION: '6.0.401' # The .NET SDK version to use
+  DOTNET_VERSION: '6.0.x' # The .NET SDK version to use
 
 jobs:
   build-and-test:
@@ -28,7 +28,7 @@ jobs:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
     - name: Install dependencies
-      run: dotnet  restore RealTimeWeatherMonitoringSystem/
+      run: dotnet  restore 
       
     - name: Build
       run: dotnet build  --configuration Release --no-restore 
