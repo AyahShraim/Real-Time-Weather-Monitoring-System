@@ -10,6 +10,7 @@
 - [Example Interaction](#example-interaction)
 - [Flowchart](#flowchart)
 - [Additional Notes](#additional-notes)
+- [WorkFlow Status Badge](#workflow-status-badge)
 
 ## Overview
 
@@ -47,3 +48,7 @@ This C# console application simulates a real-time weather monitoring and reporti
 
 - Utilizes Observer and Strategy design patterns.
 - Supports adding new bot types and data formats with minimal code changes.
+
+## WorkFlow Status Badge
+
+[![build and test](https://github.com/AyahShraim/Real-Time-Weather-Monitoring-System/actions/workflows/build_and_test.yml/badge.svg)](https://github.com/AyahShraim/Real-Time-Weather-Monitoring-System/actions/workflows/build_and_test.yml)
