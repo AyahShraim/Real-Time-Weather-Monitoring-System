@@ -26,10 +26,6 @@ namespace RealTimeWeatherMonitoringApp.BotsManagement.BotConfiguration
             {
                 return OperationResult.FailureDataMessage($"Error on configuration file : {ex.Message}", botsConfiguration);
             }     
-        }
-        internal OperationResult LoadBotsConfigurationWrapper(string fileName)
-        {
-            return BotConfigurationRepository.LoadBotsConfiguration(fileName);
-        }
+        }  
     }
 }
