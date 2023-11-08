@@ -28,10 +28,10 @@ jobs:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
     - name: Install dependencies
-      run: dotnet RealTimeWeatherMonitoringSystem/ restore
+      run: dotnet  restore RealTimeWeatherMonitoringSystem/
       
     - name: Build
-      run: dotnet build RealTimeWeatherMonitoringSystem --configuration Release --no-restore 
-    
+      run: dotnet build  --configuration Release --no-restore 
+  
     - name: Test
-      run: dotnet test RealTimeWeatherMonitoringSystem/RealTimeWeatherMonitoringApp.Tests --no-restore --verbosity normal
+      run: dotnet test  --no-restore --verbosity normal
