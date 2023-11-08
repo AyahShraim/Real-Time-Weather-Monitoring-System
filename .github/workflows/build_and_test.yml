@@ -3,7 +3,7 @@ name: build and test
 on:
   push:
   pull_request:
-    branches: [ testing ]
+    branches: [ main ]
     paths:
     - '**.cs'
     - '**.csproj'
@@ -33,7 +33,7 @@ jobs:
       run: dotnet  restore 
       
     - name: Build
-      run: dotnet build RealTimeWeatherMonitoringApp/RealTimeWeatherMonitoringApp.csproj  --configuration Release --no-restore 
+      run: dotnet build  --configuration Release --no-restore 
   
     - name: Test
-      run: dotnet test RealTimeWeatherMonitoringApp/RealTimeWeatherMonitoringApp.Tests.csproj  --no-restore --verbosity normal
+      run: dotnet test   --no-restore --verbosity normal
