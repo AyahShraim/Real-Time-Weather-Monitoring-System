@@ -6,8 +6,8 @@ namespace RealTimeWeatherMonitoringApp.BotsManagement
     {
         public float HumidityThreshold { get; set; }
         public string ActivatedMessage { get; set; } = string.Empty;
-        public float CurrentHumidity { get; set; }
-        public IOutputWriter _outputWriter;
+        internal float CurrentHumidity { get; set; }
+        internal IOutputWriter _outputWriter;
 
         public RainBot(float humidityThreshold, string activatedMsg,IOutputWriter outputWriter)
         {

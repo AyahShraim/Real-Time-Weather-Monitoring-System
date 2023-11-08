@@ -6,8 +6,8 @@ namespace RealTimeWeatherMonitoringApp.BotsManagement
     {
         public float TemperatureThreshold { get; set; }
         public string ActivatedMessage { get; set; } = string.Empty;
-        public float CurrentTemperature { get; set; }
-        public IOutputWriter _outputWriter;
+        internal float CurrentTemperature { get; set; }
+        internal IOutputWriter _outputWriter;
         public SunBot(float tempThreshold, string activatedMsg, IOutputWriter outputWriter)
         {
             TemperatureThreshold = tempThreshold;
