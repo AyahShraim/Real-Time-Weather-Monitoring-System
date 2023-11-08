@@ -3,13 +3,13 @@ name: build and test
 on:
   push:
   pull_request:
-    branches: [ testing ]
+    branches: [ main ]
     paths:
     - '**.cs'
     - '**.csproj'
 
 env:
-  DOTNET_VERSION: '6.0' # The .NET SDK version to use
+  DOTNET_VERSION: '6.0.401' # The .NET SDK version to use
 
 jobs:
   build-and-test:
@@ -31,7 +31,6 @@ jobs:
       run: dotnet restore
       
     - name: Build
-      working-directory: RealTimeWeatherMonitoringApp.Tests
       run: dotnet build --configuration Release --no-restore
     
     - name: Test
