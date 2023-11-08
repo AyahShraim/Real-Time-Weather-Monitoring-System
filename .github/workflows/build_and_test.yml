@@ -31,6 +31,7 @@ jobs:
       run: dotnet restore
       
     - name: Build
+      working-directory: RealTimeWeatherMonitoringApp.Tests
       run: dotnet build --configuration Release --no-restore
     
     - name: Test
