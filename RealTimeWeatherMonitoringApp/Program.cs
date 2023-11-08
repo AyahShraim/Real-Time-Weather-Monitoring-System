@@ -1,2 +1,10 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using RealTimeWeatherMonitoringApp;
+using RealTimeWeatherMonitoringApp.Utilities;
+using RealTimeWeatherMonitoringApp.WeatherManagement;
+
+WeatherMonitoringApp weatherMonitoringApp = new WeatherMonitoringApp(new WeatherStation(),new ConsoleOutputWriter(), new ConsoleUserInterface());
+weatherMonitoringApp.Run();
+
+
+  
+
