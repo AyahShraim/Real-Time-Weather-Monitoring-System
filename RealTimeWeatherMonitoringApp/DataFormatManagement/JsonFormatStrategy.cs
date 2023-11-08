@@ -1,30 +1,29 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using RealTimeWeatherMonitoringApp.ResultHandler;
+using RealTimeWeatherMonitoringApp.Utilities.ResultHnadler;
 using RealTimeWeatherMonitoringApp.WeatherManagement;
 
 namespace RealTimeWeatherMonitoringApp.DataFormatManagement
 {
     public class JsonFormatStrategy : IProcessInputDataStrategy
     {
-        public OperationResult ValidateFormat(string inputData)
+        public bool ValidateFormat(string inputData)
         {
             try
             {
                 JObject jsonInputObject = JObject.Parse(inputData);
-                return OperationResult.SuccessResult("Valid json format");
+                return true;
             }
-            catch (Exception ex)
+            catch (Exception) 
             {
-                return OperationResult.FailureResult($"Not valid json {ex.Message}");
+                return false;
             }
         }
         public OperationResult ExtractData(string inputData)
         {
             try
             {
-                WeatherData weatherData = new();
-                weatherData = JsonConvert.DeserializeObject<WeatherData>(inputData);
+                WeatherData weatherData = JsonConvert.DeserializeObject<WeatherData>(inputData);
                 return OperationResult.SuccessDataMessage("Weather data extracted!", weatherData);
 
             }

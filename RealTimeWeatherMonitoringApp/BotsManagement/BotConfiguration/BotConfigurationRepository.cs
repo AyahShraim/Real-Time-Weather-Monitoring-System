@@ -1,4 +1,4 @@
-﻿using RealTimeWeatherMonitoringApp.ResultHandler;
+﻿using RealTimeWeatherMonitoringApp.Utilities.ResultHnadler;
 using System.Text.Json;
 
 namespace RealTimeWeatherMonitoringApp.BotsManagement.BotConfiguration
@@ -26,6 +26,10 @@ namespace RealTimeWeatherMonitoringApp.BotsManagement.BotConfiguration
             {
                 return OperationResult.FailureDataMessage($"Error on configuration file : {ex.Message}", botsConfiguration);
             }     
+        }
+        internal OperationResult LoadBotsConfigurationWrapper(string fileName)
+        {
+            return BotConfigurationRepository.LoadBotsConfiguration(fileName);
         }
     }
 }

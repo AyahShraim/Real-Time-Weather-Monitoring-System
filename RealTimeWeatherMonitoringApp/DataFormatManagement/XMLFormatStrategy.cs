@@ -1,24 +1,23 @@
-﻿using RealTimeWeatherMonitoringApp.ResultHandler;
-using System.Xml;
+﻿using System.Xml;
 using System.Xml.Serialization;
 using RealTimeWeatherMonitoringApp.WeatherManagement;
+using RealTimeWeatherMonitoringApp.Utilities.ResultHnadler;
 
 namespace RealTimeWeatherMonitoringApp.DataFormatManagement
 {
     public class XMLFormatStrategy : IProcessInputDataStrategy
     {
-        public OperationResult ValidateFormat(string inputData)
+        public bool ValidateFormat(string inputData)
         {
             try
             {
                 XmlDocument xmlDocument = new();
                 xmlDocument.LoadXml(inputData);
-                return OperationResult.SuccessResult("Valid xml format");
-
+                return true;
             }
-            catch (Exception ex)
+            catch 
             {
-                return OperationResult.FailureResult($"Not valid xml {ex.Message}");
+                return false;
             }
         }
       

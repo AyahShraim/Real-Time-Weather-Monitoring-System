@@ -1,15 +1,18 @@
-﻿namespace RealTimeWeatherMonitoringApp.BotsManagement
+﻿using RealTimeWeatherMonitoringApp.Utilities;
+
+namespace RealTimeWeatherMonitoringApp.BotsManagement
 {
-    internal class SunBot : IBotFunctionality, IWeatherDataSubscriber
+    public class SunBot : IBotFunctionality, IWeatherDataSubscriber
     {
         public float TemperatureThreshold { get; set; }
         public string ActivatedMessage { get; set; } = string.Empty;
-        private float CurrentTemperature { get; set; }
-
-        public SunBot(float tempThreshold, string activatedMsg)
+        public float CurrentTemperature { get; set; }
+        public IOutputWriter _outputWriter;
+        public SunBot(float tempThreshold, string activatedMsg, IOutputWriter outputWriter)
         {
             TemperatureThreshold = tempThreshold;
             ActivatedMessage = activatedMsg;
+            _outputWriter = outputWriter;
         }
         public bool IsActivate()
         {
@@ -21,8 +24,8 @@
             bool botHasActivated = IsActivate();
             if (botHasActivated)
             {
-                Console.WriteLine("SunBot Activated !");
-                Console.WriteLine($"SunBot :{ActivatedMessage}");
+                _outputWriter.WriteLine("SunBot Activated !");
+                _outputWriter.WriteLine($"SunBot :{ActivatedMessage}");
             }
         }
         public void Update(float newTemperature, float newHumidity)

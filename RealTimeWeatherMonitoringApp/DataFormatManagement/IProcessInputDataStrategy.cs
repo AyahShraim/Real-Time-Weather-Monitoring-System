@@ -1,10 +1,10 @@
-﻿using RealTimeWeatherMonitoringApp.ResultHandler;
+﻿using RealTimeWeatherMonitoringApp.Utilities.ResultHnadler;
 
 namespace RealTimeWeatherMonitoringApp.DataFormatManagement
 {
     public interface IProcessInputDataStrategy
     {
-        OperationResult ValidateFormat(string inputData);
+        bool ValidateFormat(string inputData);
         public OperationResult ExtractData(string inputData);
     }
 }

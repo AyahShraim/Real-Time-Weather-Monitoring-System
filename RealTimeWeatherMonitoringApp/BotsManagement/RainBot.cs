@@ -1,15 +1,19 @@
-﻿namespace RealTimeWeatherMonitoringApp.BotsManagement
+﻿using RealTimeWeatherMonitoringApp.Utilities;
+
+namespace RealTimeWeatherMonitoringApp.BotsManagement
 {
-    internal class RainBot : IWeatherDataSubscriber, IBotFunctionality
+    public class RainBot : IWeatherDataSubscriber, IBotFunctionality
     {
         public float HumidityThreshold { get; set; }
         public string ActivatedMessage { get; set; } = string.Empty;
         public float CurrentHumidity { get; set; }
+        public IOutputWriter _outputWriter;
 
-        public RainBot(float humidityThreshold, string activatedMsg)
+        public RainBot(float humidityThreshold, string activatedMsg,IOutputWriter outputWriter)
         {
             HumidityThreshold = humidityThreshold;
             ActivatedMessage = activatedMsg;
+            _outputWriter = outputWriter;
         }
         public bool IsActivate()
         {
@@ -21,8 +25,8 @@
             bool botHasActivated = IsActivate();
             if (botHasActivated)
             {
-                Console.WriteLine("RainBot Activated !");
-                Console.WriteLine($"RainBot :{ActivatedMessage}");
+                _outputWriter.WriteLine("RainBot Activated !");
+                _outputWriter.WriteLine($"RainBot: {ActivatedMessage}");
             }
         }
         public void Update(float newTemperature, float newHumidity)

@@ -1,16 +1,20 @@
 ﻿
+using RealTimeWeatherMonitoringApp.Utilities;
+
 namespace RealTimeWeatherMonitoringApp.BotsManagement
 {
-    internal class SnowBot : IWeatherDataSubscriber, IBotFunctionality
+    public class SnowBot : IWeatherDataSubscriber, IBotFunctionality
     {
         public float TemperatureThreshold { get; set; }
         public string ActivatedMessage { get; set; } = string.Empty;
-        private float CurrentTemperature { get; set; }
+        public float CurrentTemperature { get; set; }
+        public IOutputWriter _outputWriter;
 
-        public SnowBot(float tempThreshold, string activatedMsg)
+        public SnowBot(float tempThreshold, string activatedMsg, IOutputWriter outputWriter)
         {
             TemperatureThreshold = tempThreshold;
             ActivatedMessage = activatedMsg;
+            _outputWriter = outputWriter;
         }
         public bool IsActivate()
         {
@@ -22,8 +26,8 @@ namespace RealTimeWeatherMonitoringApp.BotsManagement
             bool botHasActivated = IsActivate();
             if (botHasActivated)
             {
-                Console.WriteLine("SnowBot Activated !");
-                Console.WriteLine($"SnowBot :{ActivatedMessage}");
+                _outputWriter.WriteLine("SnowBot Activated !");
+                _outputWriter.WriteLine($"SnowBot :{ActivatedMessage}");
             }
         }
         public void Update(float newTemperature, float newHumidity)
